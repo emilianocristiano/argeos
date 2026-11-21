@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ARGEOS · Servicios Geológicos Argentinos</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta property="og:title" content="ARGEOS · Servicios Geológicos Argentinos">
+<meta property="og:description" content="Evaluación ambiental, hidrogeología aplicada, geofísica y gestiones ante organismos para industria e infraestructura.">
+<meta property="og:image" content="https://emilianocristiano.github.io/argeos/img/campo-dron.jpg">
+<meta property="og:url" content="https://emilianocristiano.github.io/argeos/">
+<meta property="og:type" content="website">
+<meta name="description" content="ARGEOS, Servicios Geológicos Argentinos. Evaluación ambiental, hidrogeología aplicada, geofísica y gestiones ante organismos para industria e infraestructura.">
+<link rel="icon" href="img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;112,700;112,800&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: portada con foto de campo; servicios agrupados en cuatro áreas, cada una abierta por una banda tipo estrato */
+:root{
+  --bg:#F3F5F7;
+  --surface:#FFFFFF;
+  --ink:#14243A;
+  --muted:#55637A;
+  --line:#D3DBE5;
+  --brand:#1F4E8C;      /* azul de marca */
+  --sky:#4A9BD9;        /* celeste del logo */
+  --sun:#E3A21F;        /* sol del logo, uso mínimo */
+  --on-brand:#FFFFFF;
+  --tint:#E4EEF8;
+  --s-vadose:#E4D9C4; --s-sat:#C4DCEE; --s-clay:#A08F7C; --s-gravel:#94B6D2; --s-rock:#6F7782;
+  --f-display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --f-body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --wrap:1180px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0D1522;--surface:#142033;--ink:#E3EAF3;--muted:#9AA9BF;--line:#26354B;
+  --brand:#7FB4EC;--sky:#5FAEE8;--sun:#F0B740;--on-brand:#0D1522;--tint:#18283F;
+  --s-vadose:#4A4335;--s-sat:#1E3B57;--s-clay:#5B4F44;--s-gravel:#2B4D6B;--s-rock:#3A404A;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0D1522;--surface:#142033;--ink:#E3EAF3;--muted:#9AA9BF;--line:#26354B;
+  --brand:#7FB4EC;--sky:#5FAEE8;--sun:#F0B740;--on-brand:#0D1522;--tint:#18283F;
+  --s-vadose:#4A4335;--s-sat:#1E3B57;--s-clay:#5B4F44;--s-gravel:#2B4D6B;--s-rock:#3A404A;
+  color-scheme:dark}
+
+*{box-sizing:border-box}
+html,body{margin:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+a{color:var(--brand)}
+img{display:block;max-width:100%}
+:focus-visible{outline:2px solid var(--sky);outline-offset:3px;border-radius:2px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-left:max(16px, env(safe-area-inset-left,0px));padding-right:max(16px, env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-display);font-stretch:112%;line-height:1.1;text-wrap:balance;margin:0;color:var(--ink)}
+h2{font-size:clamp(1.8rem,3.4vw,2.6rem);font-weight:700;letter-spacing:-.01em}
+h3{font-size:1.45rem;font-weight:700}
+h4{font:600 1.02rem/1.35 var(--f-body);margin:0}
+p{margin:0}
+.label{font-family:var(--f-mono);font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.lead{color:var(--muted);font-size:1.1rem;max-width:62ch}
+
+/* Header */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-block:10px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
+.brand img{width:34px;height:auto}
+.brand span{display:grid;line-height:1.15}
+.brand b{font-family:var(--f-display);font-stretch:112%;font-weight:800;font-size:1.2rem;letter-spacing:.06em;color:var(--brand)}
+.brand small{font-size:.74rem;color:var(--muted)}
+nav{display:flex;gap:22px;flex-wrap:wrap}
+nav a{color:var(--ink);text-decoration:none;font-size:.94rem;font-weight:500}
+nav a:hover{color:var(--brand)}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--brand);color:var(--on-brand);border:0;padding:12px 20px;border-radius:4px;font:600 .96rem var(--f-body);text-decoration:none;cursor:pointer;transition:transform .15s ease,filter .15s}
+.btn:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+@media (max-width:900px){nav{display:none}}
+@media (max-width:420px){header .btn{padding:10px 14px;font-size:.88rem}}
+
+/* Hero */
+.hero .wrap{padding-block:56px 0;display:grid;gap:40px}
+.hero-top{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:end}
+.hero h1{font-size:clamp(2.3rem,5.4vw,4.2rem);font-weight:800;letter-spacing:-.02em}
+.hero h1 em{font-style:normal;color:var(--brand)}
+.hero-copy{display:grid;gap:20px;min-width:0}
+.chip{justify-self:start;background:var(--tint);color:var(--brand);font-family:var(--f-mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;padding:6px 10px;border-radius:3px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.hero-photo{position:relative;border-radius:6px;overflow:hidden;aspect-ratio:21/9;max-width:100%;background:var(--line)}
+.hero-photo img{width:100%;height:100%;object-fit:cover}
+.hero-photo figcaption{position:absolute;left:14px;bottom:12px;background:rgba(10,20,34,.72);color:#fff;font-family:var(--f-mono);font-size:.74rem;padding:5px 9px;border-radius:3px}
+@media (max-width:860px){.hero-top{grid-template-columns:1fr;gap:20px}.hero-photo{aspect-ratio:4/3}}
+
+/* Índice de servicios */
+.index{padding-block:72px 24px}
+.index-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line);margin-top:28px}
+.index-col{padding:22px 22px 22px 0;display:grid;gap:10px;align-content:start;min-width:0}
+.index-col + .index-col{padding-left:22px;border-left:1px solid var(--line)}
+.index-col a{color:var(--ink);text-decoration:none;font-weight:500}
+.index-col a:hover{color:var(--brand);text-decoration:underline}
+.swatch{display:inline-block;width:12px;height:12px;border-radius:2px;margin-right:8px;vertical-align:-1px}
+@media (max-width:900px){.index-grid{grid-template-columns:1fr 1fr}.index-col:nth-child(3){padding-left:0;border-left:0}.index-col:nth-child(n+3){border-top:1px solid var(--line)}}
+@media (max-width:520px){.index-grid{grid-template-columns:1fr}.index-col,.index-col + .index-col{padding:18px 0;border-left:0}.index-col + .index-col{border-top:1px solid var(--line)}}
+
+/* Grupo de servicios */
+.group{padding-block:40px 24px}
+.group-head{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;padding:18px 22px;border-radius:6px;margin-bottom:12px}
+.group-head .stripe{width:46px;height:46px;border-radius:4px}
+.group-head h2{font-size:clamp(1.5rem,2.6vw,2rem)}
+.g-amb{background:color-mix(in srgb,var(--s-vadose) 55%,var(--bg))}
+.g-agua{background:color-mix(in srgb,var(--s-sat) 60%,var(--bg))}
+.g-geo{background:color-mix(in srgb,var(--s-clay) 35%,var(--bg))}
+.g-tram{background:var(--tint)}
+
+.svc{display:grid;grid-template-columns:1.15fr 1fr;gap:48px;padding-block:44px;border-bottom:1px solid var(--line);align-items:start}
+.svc:last-child{border-bottom:0}
+.svc.flip > .svc-media{order:-1}
+.svc.solo{grid-template-columns:1fr}
+.svc-text{display:grid;gap:18px;min-width:0}
+.svc-text > p{color:var(--muted);max-width:64ch}
+.items{display:grid;grid-template-columns:1fr 1fr;gap:0 32px;margin:6px 0 0;padding:0}
+.svc:not(.solo) .items{grid-template-columns:1fr}
+.items div{padding:14px 0;border-top:1px solid var(--line);display:grid;gap:4px;min-width:0}
+.items dd{margin:0;color:var(--muted);font-size:.96rem}
+.items ul{margin:6px 0 0;padding-left:18px;color:var(--muted);font-size:.94rem}
+.note{background:var(--tint);color:var(--ink);padding:12px 16px;border-radius:4px;font-size:.95rem}
+.svc-media{min-width:0;display:grid;gap:10px}
+.svc-media img{width:100%;border-radius:6px;object-fit:cover;aspect-ratio:4/5;background:var(--line)}
+.svc-media.wide img{aspect-ratio:4/3}
+.grid4{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid4 img{aspect-ratio:1/1}
+.cap{font-family:var(--f-mono);font-size:.74rem;color:var(--muted)}
+@media (max-width:860px){
+  .svc,.svc.solo{grid-template-columns:1fr;gap:24px}
+  .svc.flip > .svc-media{order:0}
+  .svc-media img{aspect-ratio:4/3}
+  .items{grid-template-columns:1fr}
+}
+
+/* Corte hidrogeológico */
+.section-fig{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--surface);margin:0}
+.fig-scroll{overflow-x:auto}
+.section-fig svg{display:block;width:100%;height:auto;min-width:640px}
+.fig-cap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:10px 16px;border-top:1px solid var(--line);font-family:var(--f-mono);font-size:.74rem;color:var(--muted)}
+svg text{font-family:var(--f-mono);font-size:12px;fill:var(--ink)}
+svg .t-muted{fill:var(--muted)}
+svg .t-inv{fill:var(--surface)}
+.l-vadose{fill:var(--s-vadose)}.l-sat{fill:var(--s-sat)}.l-clay{fill:var(--s-clay)}.l-gravel{fill:var(--s-gravel)}.l-rock{fill:var(--s-rock)}
+.wt{fill:none;stroke:var(--brand);stroke-width:2;stroke-dasharray:7 5}
+.wt-mark{fill:var(--brand)}
+.well{fill:var(--ink)}
+.casing{stroke:var(--ink);stroke-width:3}
+.screen{stroke:var(--surface);stroke-width:3;stroke-dasharray:3 3}
+.flow{stroke:var(--brand);stroke-width:1.6;fill:none;marker-end:url(#arr);stroke-dasharray:40 8;animation:drift 6s linear infinite}
+.ground{fill:none;stroke:var(--sun);stroke-width:2}
+@keyframes drift{from{stroke-dashoffset:0}to{stroke-dashoffset:-48}}
+
+/* Valor, proceso, sectores */
+section.band{background:var(--surface);border-block:1px solid var(--line)}
+.block{padding-block:88px}
+.sec-head{display:grid;gap:14px;margin-bottom:40px;max-width:760px}
+.value{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line)}
+.value div{padding:24px 24px 24px 0;display:grid;gap:8px;align-content:start;border-bottom:1px solid var(--line);min-width:0}
+.value div:not(:nth-child(3n+1)){padding-left:24px;border-left:1px solid var(--line)}
+.value p{color:var(--muted);font-size:.96rem}
+@media (max-width:900px){.value{grid-template-columns:1fr 1fr}.value div,.value div:not(:nth-child(3n+1)){padding:22px 22px 22px 0;border-left:0}.value div:nth-child(2n){padding-left:22px;border-left:1px solid var(--line)}}
+@media (max-width:560px){.value{grid-template-columns:1fr}.value div,.value div:nth-child(2n){padding:20px 0;border-left:0}}
+
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+.step{display:grid;gap:10px;align-content:start;padding-top:18px;border-top:3px solid var(--sky);min-width:0}
+.step:nth-child(1){border-color:var(--brand)}
+.step .n{font-family:var(--f-mono);font-size:.78rem;color:var(--brand)}
+.step p{color:var(--muted);font-size:.96rem}
+.steps-note{margin-top:28px;color:var(--muted);max-width:70ch}
+@media (max-width:900px){.steps{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.steps{grid-template-columns:1fr}}
+
+.sectors{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.sectors div{background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:18px 20px;display:grid;gap:4px;min-width:0}
+.sectors p{color:var(--muted);font-size:.94rem}
+@media (max-width:900px){.sectors{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.sectors{grid-template-columns:1fr}}
+
+/* Contacto */
+.contact{display:grid;grid-template-columns:1fr 1.1fr;gap:56px;align-items:start}
+.contact-copy{display:grid;gap:18px;min-width:0}
+.channels{display:grid;gap:0;border-top:1px solid var(--line)}
+.channel{display:grid;grid-template-columns:140px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.channel dd{margin:0;display:grid;gap:6px;min-width:0}
+.channel .val{font-family:var(--f-mono);font-size:1rem;color:var(--ink);user-select:all;overflow-wrap:anywhere}
+.channel a{font-size:.92rem}
+.channel p{color:var(--muted);font-size:.94rem}
+.copy{justify-self:start;background:none;border:1px solid var(--line);color:var(--muted);font:500 .8rem var(--f-body);padding:4px 10px;border-radius:3px;cursor:pointer}
+.copy:hover{color:var(--brand);border-color:var(--brand)}
+.motto{border-left:3px solid var(--sky);padding-left:14px;font-weight:600}
+@media (max-width:860px){.contact{grid-template-columns:1fr;gap:32px}}
+@media (max-width:480px){.channel{grid-template-columns:1fr;gap:6px}}
+
+footer{border-top:1px solid var(--line)}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-block:28px;color:var(--muted);font-size:.88rem}
+footer .brand img{width:28px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="#inicio"><img src="img/logo.png" alt="" width="34" height="46"><span><b>ARGEOS</b><small>Servicios Geológicos Argentinos</small></span></a>
+    <nav aria-label="Principal">
+      <a href="#servicios">Servicios</a>
+      <a href="#valor">Por qué ARGEOS</a>
+      <a href="#proceso">Cómo trabajamos</a>
+      <a href="#sectores">Sectores</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <a class="btn" href="#contacto">Consultar</a>
+  </div>
+</header>
+
+<main id="inicio">
+  <div class="hero">
+    <div class="wrap">
+      <div class="hero-top">
+        <div class="hero-copy">
+          <span class="chip">Soluciones técnicas para proyectos industriales y de infraestructura</span>
+          <h1>Información confiable para <em>decisiones seguras</em>.</h1>
+        </div>
+        <div class="hero-copy">
+          <p class="lead">Evaluación ambiental, hidrogeología aplicada y diagnóstico del subsuelo para cumplir la normativa, gestionar riesgos y decidir con datos técnicos confiables. Acompañamos cada etapa del proyecto, desde la caracterización inicial hasta la presentación ante las autoridades.</p>
+          <div class="cta">
+            <a class="btn" href="#contacto">Pedir asesoramiento</a>
+            <a class="btn ghost" href="#servicios">Ver servicios</a>
+          </div>
+        </div>
+      </div>
+      <figure class="hero-photo" style="margin:0">
+        <img src="img/campo-dron.jpg" alt="Vista aérea de una red de pozos de monitoreo de agua subterránea en un predio rural" width="1920" height="1080">
+        <figcaption>Red de monitoreo de agua subterránea</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="index" id="servicios">
+    <div class="wrap">
+      <span class="label">Líneas de servicio</span>
+      <h2 style="margin-top:12px">Todo el diagnóstico del sitio con un mismo equipo</h2>
+      <div class="index-grid">
+        <div class="index-col">
+          <span class="label"><i class="swatch" style="background:var(--s-vadose)"></i>Ambiente</span>
+          <a href="#evaluacion">Evaluación ambiental de sitios</a>
+          <a href="#riesgo">Análisis de riesgo y remediación</a>
+          <a href="#residuos">Gestión de residuos</a>
+        </div>
+        <div class="index-col">
+          <span class="label"><i class="swatch" style="background:var(--s-sat)"></i>Agua subterránea</span>
+          <a href="#hidrogeologia">Hidrogeología aplicada</a>
+          <a href="#monitoreo">Monitoreo ambiental</a>
+          <a href="#videoendoscopia">Videoendoscopía de pozos</a>
+        </div>
+        <div class="index-col">
+          <span class="label"><i class="swatch" style="background:var(--s-clay)"></i>Geofísica</span>
+          <a href="#georradar">Georradar (GPR)</a>
+          <a href="#tomografia">Tomografía eléctrica (ERT)</a>
+        </div>
+        <div class="index-col">
+          <span class="label"><i class="swatch" style="background:var(--sky)"></i>Agua y trámites</span>
+          <a href="#efluentes">Agua y efluentes</a>
+          <a href="#gestiones">Gestiones ante organismos</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AMBIENTE -->
+  <div class="group">
+    <div class="wrap">
+      <div class="group-head g-amb"><i class="stripe" style="background:var(--s-vadose)"></i><div><span class="label">Área</span><h2>Ambiente</h2></div></div>
+
+      <article class="svc solo" id="evaluacion">
+        <div class="svc-text">
+          <h3>Evaluación ambiental de sitios</h3>
+          <p>Estudios ambientales completos para identificar, caracterizar y cuantificar pasivos ambientales en sitios industriales, comerciales e institucionales. Seguimos los estándares de la ASTM y la normativa local vigente, con informes técnicamente sólidos y jurídicamente válidos ante los organismos de control. Desde la revisión histórica del sitio hasta el muestreo de suelos y aguas, cada etapa queda documentada para respaldar decisiones de remediación, compraventa de terrenos o cierre de instalaciones.</p>
+          <dl class="items">
+            <div><dt><h4>Estudios de Impacto Ambiental (EsIA)</h4></dt><dd>Línea de base, identificación de impactos y medidas de mitigación conforme a la normativa vigente.</dd></div>
+            <div><dt><h4>Estudios Fase I</h4></dt><dd>Identificación de pasivos ambientales con revisión histórica, entrevistas y reconocimiento de campo según ASTM E1527.</dd></div>
+            <div><dt><h4>Estudios Fase II</h4></dt><dd>Muestreo sistemático de suelos y aguas subterráneas para caracterizar los contaminantes de preocupación.</dd></div>
+            <div><dt><h4>Sitios potencialmente contaminados</h4></dt><dd>Evaluación integral con criterios normativos vigentes e informes técnicos para organismos de control.</dd></div>
+          </dl>
+        </div>
+      </article>
+
+      <article class="svc solo" id="riesgo">
+        <div class="svc-text">
+          <h3>Análisis de riesgo y remediación</h3>
+          <p>Evaluaciones de riesgo para la salud humana bajo el marco RBCA (Risk-Based Corrective Action), con modelos conceptuales del sitio que definen niveles de intervención técnicamente fundamentados y económicamente eficientes. El enfoque basado en riesgo evita la sobrerremediación y optimiza los recursos del cliente.</p>
+          <dl class="items">
+            <div><dt><h4>RBCA</h4></dt><dd>Evaluación de riesgo para la salud humana considerando todas las vías de exposición: inhalación, ingestión y contacto dérmico.</dd></div>
+            <div><dt><h4>Modelo conceptual del sitio</h4></dt><dd>Construcción del CSM identificando fuentes, vías y receptores de la contaminación.</dd></div>
+            <div><dt><h4>Niveles de intervención</h4></dt><dd>Concentraciones objetivo definidas según el uso del suelo y la sensibilidad de los receptores.</dd></div>
+            <div><dt><h4>Planes de remediación</h4></dt><dd>Estrategias adaptadas al contexto técnico, normativo y económico de cada sitio.</dd></div>
+          </dl>
+        </div>
+      </article>
+
+      <article class="svc" id="residuos">
+        <div class="svc-text">
+          <h3>Gestión de residuos</h3>
+          <p>Estrategias de gestión integral de residuos para instalaciones industriales, orientadas al cumplimiento normativo y a la optimización operativa. Un manejo correcto minimiza riesgos ambientales, asegura la trazabilidad y garantiza una disposición final conforme a la legislación.</p>
+          <dl class="items">
+            <div><dt><h4>Clasificación y manejo</h4></dt><dd>Identificación, segregación y manejo de residuos especiales y no especiales según su peligrosidad y la normativa aplicable.</dd></div>
+            <div><dt><h4>Cumplimiento normativo</h4></dt><dd>Gestión documental, almacenamiento, transporte y disposición final conforme a la legislación vigente.</dd></div>
+            <div><dt><h4>Optimización operativa</h4></dt><dd>Mejores prácticas internas para reducir la generación, los costos de gestión y los riesgos asociados.</dd></div>
+          </dl>
+        </div>
+        <div class="svc-media"><img src="img/residuos.jpg" alt="Contenedores de residuos diferenciados en un patio industrial" loading="lazy" width="900" height="1350"></div>
+      </article>
+    </div>
+  </div>
+
+  <!-- AGUA SUBTERRÁNEA -->
+  <div class="group">
+    <div class="wrap">
+      <div class="group-head g-agua"><i class="stripe" style="background:var(--s-sat)"></i><div><span class="label">Área</span><h2>Agua subterránea</h2></div></div>
+
+      <article class="svc" id="hidrogeologia">
+        <div class="svc-text">
+          <h3>Hidrogeología aplicada</h3>
+          <p>La caracterización hidrogeológica permite entender cómo se comporta el agua subterránea y cómo interactúa con posibles fuentes de contaminación. Hacemos estudios integrales, desde la instalación de piezómetros hasta la interpretación de ensayos de bombeo y la modelización del flujo subterráneo.</p>
+          <dl class="items">
+            <div><dt><h4>Caracterización de aguas subterráneas</h4></dt><dd>Parámetros hidráulicos, calidad fisicoquímica y dirección de flujo.</dd></div>
+            <div><dt><h4>Redes de monitoreo</h4></dt><dd>Diseño, instalación y seguimiento de redes de piezómetros y pozos de observación.</dd></div>
+            <div><dt><h4>Interpretación hidrogeológica</h4></dt><dd>Análisis integrado de datos para tomar decisiones técnicas fundamentadas.</dd></div>
+            <div><dt><h4>Supervisión de perforaciones</h4></dt><dd>Control profesional de la ejecución de pozos de monitoreo y captación:
+              <ul><li>Registro litológico (logueo)</li><li>Verificación constructiva de entubado y filtrado</li><li>Control de calidad de obra y materiales</li></ul></dd></div>
+          </dl>
+        </div>
+        <div class="svc-media">
+          <div class="grid4">
+            <img src="img/pozo-monitoreo.jpg" alt="Pozo de monitoreo identificado con cartel ARGEOS" loading="lazy" width="626" height="626">
+            <img src="img/muestreo-agua.jpg" alt="Técnico tomando una muestra de agua" loading="lazy" width="626" height="626">
+            <img src="img/campo-equipo.jpg" alt="Equipo trabajando en campo junto a un cerco industrial" loading="lazy" width="626" height="626">
+            <img src="img/perforacion.jpg" alt="Perforadora instalando un pozo de monitoreo" loading="lazy" width="626" height="626">
+          </div>
+        </div>
+      </article>
+
+      <figure class="section-fig">
+        <div class="fig-scroll">
+        <svg viewBox="0 0 800 340" role="img" aria-labelledby="figt">
+          <title id="figt">Corte hidrogeológico esquemático con acuífero libre, acuitardo, acuífero semiconfinado, un pozo de monitoreo y un piezómetro</title>
+          <defs><marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="wt-mark" d="M0 0L10 5L0 10z"/></marker></defs>
+          <path class="l-vadose" d="M0 62 C150 44 300 78 450 58 S700 48 800 62 L800 340 L0 340Z"/>
+          <path class="l-sat" d="M0 112 C200 104 400 126 600 116 S760 118 800 122 L800 340 L0 340Z"/>
+          <path class="l-clay" d="M0 196 C180 188 360 206 560 196 S740 192 800 198 L800 340 L0 340Z"/>
+          <path class="l-gravel" d="M0 232 C200 226 420 242 620 232 S760 230 800 234 L800 340 L0 340Z"/>
+          <path class="l-rock" d="M0 304 C220 298 440 312 640 302 S760 302 800 306 L800 340 L0 340Z"/>
+          <path class="ground" d="M0 62 C150 44 300 78 450 58 S700 48 800 62"/>
+          <path class="wt" d="M0 112 C200 104 400 126 600 116 S760 118 800 122"/>
+          <path class="wt-mark" d="M96 96 L108 96 L102 105Z"/>
+          <text x="114" y="104">nivel freático</text>
+          <path class="flow" d="M330 158 L450 162"/>
+          <path class="flow" d="M620 158 L740 162"/>
+          <text x="455" y="182" class="t-muted">flujo subterráneo</text>
+          <line class="casing" x1="250" y1="58" x2="250" y2="190"/>
+          <line class="screen" x1="250" y1="134" x2="250" y2="186"/>
+          <rect class="well" x="242" y="48" width="16" height="12"/>
+          <text x="226" y="38">PM-1</text>
+          <line class="casing" x1="560" y1="52" x2="560" y2="292"/>
+          <line class="screen" x1="560" y1="248" x2="560" y2="288"/>
+          <rect class="well" x="552" y="42" width="16" height="12"/>
+          <text x="536" y="32">PZ-2</text>
+          <path class="wt-mark" d="M568 92 L580 92 L574 101Z"/>
+          <text x="586" y="100" class="t-muted">nivel piezométrico</text>
+          <text x="16" y="84" class="t-muted">zona no saturada</text>
+          <text x="16" y="160">acuífero libre · arenas</text>
+          <text x="16" y="218" class="t-inv">acuitardo · limos y arcillas</text>
+          <text x="16" y="272">acuífero semiconfinado · arenas y gravas</text>
+          <text x="16" y="326" class="t-inv">basamento</text>
+        </svg>
+        </div>
+        <figcaption class="fig-cap"><span>Corte esquemático · escala vertical exagerada</span><span>PM: pozo de monitoreo · PZ: piezómetro · tramo punteado: filtro</span></figcaption>
+      </figure>
+
+      <article class="svc flip" id="monitoreo">
+        <div class="svc-text">
+          <h3>Monitoreo ambiental</h3>
+          <p>Campañas de muestreo de agua subterránea con protocolos estandarizados que aseguran muestras representativas y resultados analíticos válidos. El seguimiento sistemático de parámetros fisicoquímicos permite detectar tendencias, evaluar la eficacia de una remediación y cumplir con los planes de vigilancia que exigen los organismos de control.</p>
+          <dl class="items">
+            <div><dt><h4>Campañas de muestreo</h4></dt><dd>Protocolos EPA y ASTM, con purga previa, preservación de muestras y cadena de custodia.</dd></div>
+            <div><dt><h4>Control de freatímetros</h4></dt><dd>Medición periódica de niveles piezométricos para seguir fluctuaciones estacionales y tendencias de flujo.</dd></div>
+            <div><dt><h4>Parámetros fisicoquímicos</h4></dt><dd>pH, conductividad, oxígeno disuelto, hidrocarburos y metales pesados.</dd></div>
+            <div><dt><h4>Validación para auditorías</h4></dt><dd>Procesamiento y validación de datos para auditorías ambientales y expedientes regulatorios.</dd></div>
+          </dl>
+        </div>
+        <div class="svc-media"><img src="img/medicion-nivel.jpg" alt="Técnico midiendo el nivel de agua de un pozo con una sonda" loading="lazy" width="900" height="1347"></div>
+      </article>
+
+      <article class="svc" id="videoendoscopia">
+        <div class="svc-text">
+          <h3>Videoendoscopía de pozos</h3>
+          <p>Diagnóstico interno no invasivo de pozos de monitoreo y captación.</p>
+          <dl class="items">
+            <div><dt><h4>Inspección con cámara</h4></dt><dd>Cámara de alta resolución hasta 100 m de profundidad.</dd></div>
+            <div><dt><h4>Integridad del entubado</h4></dt><dd>Detección de obstrucciones, roturas y corrosión.</dd></div>
+            <div><dt><h4>Objetos y bombas</h4></dt><dd>Identificación de objetos caídos y del estado de las bombas.</dd></div>
+            <div><dt><h4>Registro e informe</h4></dt><dd>Video completo e informe técnico con registro fotográfico.</dd></div>
+          </dl>
+          <p class="note">Para estaciones de servicio, industrias y sitios contaminados.</p>
+        </div>
+        <div class="svc-media"><img src="img/videoendoscopia.jpg" alt="Técnico bajando una cámara de inspección dentro de un pozo" loading="lazy" width="900" height="1350"></div>
+      </article>
+    </div>
+  </div>
+
+  <!-- GEOFÍSICA -->
+  <div class="group">
+    <div class="wrap">
+      <div class="group-head g-geo"><i class="stripe" style="background:var(--s-clay)"></i><div><span class="label">Área</span><h2>Geofísica aplicada</h2></div></div>
+
+      <article class="svc flip" id="georradar">
+        <div class="svc-text">
+          <h3>Georradar (GPR)</h3>
+          <p>El georradar (Ground Penetrating Radar) explora el subsuelo sin excavar y detecta estructuras enterradas, tanques abandonados, tuberías y zonas de terreno alterado. Es un apoyo clave para estudios ambientales previos a perforaciones y obras civiles, y reduce riesgos operativos y costos imprevistos.</p>
+          <dl class="items">
+            <div><dt><h4>Relevamientos GPR</h4></dt><dd>Exploración del subsuelo con equipos de alta frecuencia para detectar anomalías.</dd></div>
+            <div><dt><h4>Estructuras enterradas</h4></dt><dd>Localización de tanques, tuberías, cimentaciones e interferencias subterráneas.</dd></div>
+            <div><dt><h4>Apoyo a obras civiles</h4></dt><dd>Relevamientos previos a excavaciones para minimizar riesgos de interferencia.</dd></div>
+          </dl>
+        </div>
+        <div class="svc-media"><img src="img/georradar.jpg" alt="Equipo de georradar sobre ruedas listo para un relevamiento" loading="lazy" width="900" height="1580"></div>
+      </article>
+
+      <article class="svc" id="tomografia">
+        <div class="svc-text">
+          <h3>Tomografía eléctrica (ERT)</h3>
+          <p>Técnica geofísica no invasiva que caracteriza el subsuelo y prospecta acuíferos midiendo su resistividad eléctrica. Alcanza hasta 100 m de profundidad.</p>
+          <dl class="items">
+            <div><dt><h4>Acuíferos</h4></dt><dd>Existencia, profundidad y extensión del acuífero, y delimitación de niveles saturados.</dd></div>
+            <div><dt><h4>Geología del subsuelo</h4></dt><dd>Variaciones litológicas, estructuras geológicas y heterogeneidades del terreno.</dd></div>
+            <div><dt><h4>Contaminación</h4></dt><dd>Detección de plumas de contaminación.</dd></div>
+          </dl>
+          <p class="note">Para investigaciones ambientales, geotecnia, hidrogeología, sitios contaminados, proyectos particulares, agrícolas y ganaderos.</p>
+        </div>
+        <div class="svc-media wide"><img src="img/tomografia-campo.jpg" alt="Equipo realizando una tomografía eléctrica en el campo" loading="lazy" width="1100" height="825"></div>
+      </article>
+    </div>
+  </div>
+
+  <!-- AGUA Y TRÁMITES -->
+  <div class="group">
+    <div class="wrap">
+      <div class="group-head g-tram"><i class="stripe" style="background:var(--sky)"></i><div><span class="label">Área</span><h2>Agua y trámites</h2></div></div>
+
+      <article class="svc flip" id="efluentes">
+        <div class="svc-text">
+          <h3>Agua y efluentes</h3>
+          <p>Ingeniería y gestión técnico-administrativa para regularizar los recursos hídricos y efluentes de establecimientos comerciales e industriales frente a las exigencias de la Autoridad del Agua (ADA).</p>
+          <dl class="items">
+            <div><dt><h4>Autoridad del Agua (ADA)</h4></dt><dd>Gestión integral de trámites, declaraciones juradas y acompañamiento técnico ante el organismo para obtener las licencias hídricas.</dd></div>
+            <div><dt><h4>Aptitud de obra de explotación</h4></dt><dd>Diseño técnico y regularización de perforaciones, pozos de bombeo y tomas superficiales para un abastecimiento seguro y legal.</dd></div>
+            <div><dt><h4>Aptitud de obra hidráulica</h4></dt><dd>Documentación técnica y administrativa, relevamiento topográfico, planialtimetría y verificación de desagües industriales y su conexión con el entorno.</dd></div>
+            <div><dt><h4>Aptitud de obra de vertido</h4></dt><dd>Documentación para vertidos de efluentes líquidos industriales. Diseño y adecuación de plantas de tratamiento.</dd></div>
+          </dl>
+        </div>
+        <div class="svc-media"><img src="img/planta-efluentes.jpg" alt="Pileta de una planta de tratamiento de efluentes" loading="lazy" width="589" height="1021"></div>
+      </article>
+
+      <article class="svc solo" id="gestiones">
+        <div class="svc-text">
+          <h3>Gestiones ante organismos</h3>
+          <p>Gestionamos los trámites ante los organismos reguladores desde la presentación inicial hasta la obtención de las habilitaciones, con soporte técnico y seguimiento continuo hasta la aprobación del expediente.</p>
+          <dl class="items">
+            <div><dt><h4>Permisos de explotación</h4></dt><dd>Permisos de agua subterránea ante ADA con documentación técnica completa.</dd></div>
+            <div><dt><h4>Aptitudes hídricas</h4></dt><dd>Aptitud de obra hidráulica y de vertido conforme a la normativa vigente.</dd></div>
+            <div><dt><h4>Presentaciones técnicas</h4></dt><dd>Expedientes con fundamentación hidrogeológica y ambiental adaptados a cada organismo.</dd></div>
+            <div><dt><h4>Seguimiento de expedientes</h4></dt><dd>Control del estado del trámite y respuesta técnica a observaciones hasta el permiso definitivo.</dd></div>
+          </dl>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <section class="band" id="valor">
+    <div class="wrap block">
+      <div class="sec-head">
+        <span class="label">Por qué ARGEOS</span>
+        <h2>Ambiente e hidrogeología bajo un mismo equipo técnico</h2>
+        <p class="lead">Evitamos la fragmentación habitual entre consultoras especializadas y mantenemos la coherencia metodológica en todos los entregables. Tenemos experiencia en entornos industriales complejos: refinerías, plantas químicas, terminales de almacenamiento y sitios con historial de contaminación.</p>
+      </div>
+      <div class="value">
+        <div><h4>Enfoque integrado</h4><p>Capacidad ambiental e hidrogeológica en un solo equipo, sin interfaces entre proveedores.</p></div>
+        <div><h4>Experiencia industrial</h4><p>Trayectoria en entornos con alta exigencia técnica y regulatoria.</p></div>
+        <div><h4>Soporte para auditorías</h4><p>Documentación técnica que respalda auditorías y presentaciones ante organismos de control.</p></div>
+        <div><h4>Optimización de costos</h4><p>Metodologías que reducen tiempos y costos sin resignar calidad técnica.</p></div>
+        <div><h4>Información confiable</h4><p>Datos validados y trazables para decisiones técnicas y estratégicas.</p></div>
+        <div><h4>Flexibilidad operativa</h4><p>Servicios por proyecto o por campaña, con cobertura nacional.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="proceso">
+    <div class="wrap block">
+      <div class="sec-head">
+        <span class="label">Cómo trabajamos</span>
+        <h2>Cuatro fases, con validación en cada una</h2>
+        <p class="lead">Un protocolo estructurado que asegura trazabilidad, calidad técnica y cumplimiento normativo, desde la primera consulta hasta el informe final.</p>
+      </div>
+      <div class="steps">
+        <div class="step"><span class="n">Fase 1</span><h3>Relevamiento</h3><p>Definimos el alcance y los objetivos del proyecto.</p></div>
+        <div class="step"><span class="n">Fase 2</span><h3>Ejecución</h3><p>Trabajo técnico en campo.</p></div>
+        <div class="step"><span class="n">Fase 3</span><h3>Análisis</h3><p>Interpretamos y procesamos los datos.</p></div>
+        <div class="step"><span class="n">Fase 4</span><h3>Entrega</h3><p>Informe técnico final.</p></div>
+      </div>
+      <p class="steps-note">Cada fase cierra con un hito de validación, para que el cliente tome decisiones informadas en las etapas críticas.</p>
+    </div>
+  </section>
+
+  <section class="band" id="sectores">
+    <div class="wrap block">
+      <div class="sec-head">
+        <span class="label">Sectores</span>
+        <h2>Dónde trabajamos</h2>
+      </div>
+      <div class="sectors">
+        <div><h4>Industria</h4><p>Plantas manufactureras, refinerías y complejos petroquímicos.</p></div>
+        <div><h4>Energía</h4><p>Generación, distribución y almacenamiento de combustibles.</p></div>
+        <div><h4>Infraestructura</h4><p>Obras civiles, viales y proyectos de gran escala.</p></div>
+        <div><h4>Agroindustria</h4><p>Establecimientos agropecuarios e industrias alimentarias.</p></div>
+        <div><h4>Estaciones de servicio</h4><p>Redes de distribución de combustibles y GNC.</p></div>
+        <div><h4>Desarrollos inmobiliarios</h4><p>Proyectos residenciales, comerciales y logísticos.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <div class="wrap block contact">
+      <div class="contact-copy">
+        <span class="label">Contacto · Trabajamos en todo el país</span>
+        <h2>¿Necesita asistencia técnica para su proyecto?</h2>
+        <p class="lead">Evaluamos sus necesidades y proponemos una solución adaptada a los requisitos técnicos y normativos de su sector. El asesoramiento inicial no tiene compromiso.</p>
+        <p class="motto">Información confiable. Decisiones seguras. Cumplimiento garantizado.</p>
+      </div>
+      <dl class="channels" style="margin:0">
+        <div class="channel">
+          <dt class="label">Correo</dt>
+          <dd>
+            <span class="val" id="c-mail">argeos.consultoria@gmail.com</span>
+            <p>Adjunte documentación técnica si la tiene, para una respuesta más precisa.</p>
+            <button class="copy" type="button" data-copy="c-mail">Copiar correo</button>
+          </dd>
+        </div>
+        <div class="channel">
+          <dt class="label">Teléfono / WhatsApp</dt>
+          <dd>
+            <span class="val">+54 9 11 5885-8582</span>
+            <a href="https://wa.me/5491158858582" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+            <span class="val">+54 9 11 6827-7192</span>
+            <a href="https://wa.me/5491168277192" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+            <p>Para consultas urgentes o para coordinar una visita de relevamiento.</p>
+          </dd>
+        </div>
+        <div class="channel">
+          <dt class="label">Cobertura</dt>
+          <dd><p>Todo el territorio nacional, con despliegue rápido a cualquier provincia.</p></dd>
+        </div>
+        <div class="channel">
+          <dt class="label">Respuesta</dt>
+          <dd><p>En un plazo máximo de 24 horas hábiles.</p></dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="brand"><img src="img/logo.png" alt="" width="28" height="38"><span><b>ARGEOS</b><small>Servicios Geológicos Argentinos</small></span></span>
+    <span>© <span id="yr">2026</span> ARGEOS</span>
+  </div>
+</footer>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+document.querySelectorAll('[data-copy]').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var el = document.getElementById(b.dataset.copy), txt = el.textContent.trim(), label = b.textContent;
+    function done(m){ b.textContent = m; setTimeout(function(){ b.textContent = label; }, 1800); }
+    function select(){ var r = document.createRange(); r.selectNodeContents(el); var s = getSelection(); s.removeAllRanges(); s.addRange(r); done('Seleccionado'); }
+    try { navigator.clipboard.writeText(txt).then(function(){ done('Copiado'); }, select); } catch (e) { select(); }
+  });
+});
+</script>
+</body>
+</html>
