@@ -6,11 +6,11 @@
 <title>ARGEOS · Servicios Geológicos Argentinos</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta property="og:title" content="ARGEOS · Servicios Geológicos Argentinos">
-<meta property="og:description" content="Evaluación ambiental, hidrogeología aplicada, geofísica y gestiones ante organismos para industria e infraestructura.">
-<meta property="og:image" content="https://emilianocristiano.github.io/argeos/img/campo-dron.jpg">
-<meta property="og:url" content="https://emilianocristiano.github.io/argeos/">
+<meta property="og:description" content="ARGEOS, Servicios Geológicos Argentinos. Equipo multidisciplinario de geólogos, hidrogeólogos y profesionales ambientales. Perforación de pozos, ensayos de bombeo, impacto ambiental, agua y efluentes, geofísica (TE y SEV) y gestiones ante ADA.">
+<meta property="og:image" content="https://argeos.com.ar/img/campo-dron.jpg">
+<meta property="og:url" content="https://argeos.com.ar/">
 <meta property="og:type" content="website">
-<meta name="description" content="ARGEOS, Servicios Geológicos Argentinos. Evaluación ambiental, hidrogeología aplicada, geofísica y gestiones ante organismos para industria e infraestructura.">
+<meta name="description" content="ARGEOS, Servicios Geológicos Argentinos. Equipo multidisciplinario de geólogos, hidrogeólogos y profesionales ambientales. Perforación de pozos, ensayos de bombeo, impacto ambiental, agua y efluentes, geofísica (TE y SEV) y gestiones ante ADA.">
 <link rel="icon" href="img/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -77,7 +77,7 @@ nav a:hover{color:var(--brand)}
 .btn{display:inline-flex;align-items:center;gap:8px;background:var(--brand);color:var(--on-brand);border:0;padding:12px 20px;border-radius:4px;font:600 .96rem var(--f-body);text-decoration:none;cursor:pointer;transition:transform .15s ease,filter .15s}
 .btn:hover{filter:brightness(1.1);transform:translateY(-1px)}
 .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
-@media (max-width:900px){nav{display:none}}
+@media (max-width:900px){header nav{display:none}}
 @media (max-width:420px){header .btn{padding:10px 14px;font-size:.88rem}}
 
 /* Hero */
@@ -127,17 +127,24 @@ nav a:hover{color:var(--brand)}
 .items ul{margin:6px 0 0;padding-left:18px;color:var(--muted);font-size:.94rem}
 .note{background:var(--tint);color:var(--ink);padding:12px 16px;border-radius:4px;font-size:.95rem}
 .svc-media{min-width:0;display:grid;gap:10px}
-.svc-media img{width:100%;border-radius:6px;object-fit:cover;aspect-ratio:4/5;background:var(--line)}
+.svc-media img{width:100%;height:auto;border-radius:6px;object-fit:cover;aspect-ratio:4/5;background:var(--line)}
 .svc-media.wide img{aspect-ratio:4/3}
 .grid4{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .grid4 img{aspect-ratio:1/1}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.grid2 img,.grid3 img{aspect-ratio:1/1}
 .cap{font-family:var(--f-mono);font-size:.74rem;color:var(--muted)}
+.svc-text .more{font-weight:600}
 @media (max-width:860px){
   .svc,.svc.solo{grid-template-columns:1fr;gap:24px}
   .svc.flip > .svc-media{order:0}
   .svc-media img{aspect-ratio:4/3}
   .items{grid-template-columns:1fr}
 }
+.svc-media img.feat{aspect-ratio:16/9}
+.grid2.tall img{aspect-ratio:3/4}
+@media (max-width:480px){.grid3{grid-template-columns:1fr 1fr}}
 
 /* Corte hidrogeológico */
 .section-fig{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--surface);margin:0}
@@ -167,6 +174,23 @@ section.band{background:var(--surface);border-block:1px solid var(--line)}
 .value p{color:var(--muted);font-size:.96rem}
 @media (max-width:900px){.value{grid-template-columns:1fr 1fr}.value div,.value div:not(:nth-child(3n+1)){padding:22px 22px 22px 0;border-left:0}.value div:nth-child(2n){padding-left:22px;border-left:1px solid var(--line)}}
 @media (max-width:560px){.value{grid-template-columns:1fr}.value div,.value div:nth-child(2n){padding:20px 0;border-left:0}}
+.value.four{grid-template-columns:repeat(4,1fr)}
+.value.four div{padding:24px 24px 24px 0;border-left:0}
+.value.four div + div{padding-left:24px;border-left:1px solid var(--line)}
+@media (max-width:900px){.value.four{grid-template-columns:1fr 1fr}.value.four div,.value.four div + div{padding:22px 22px 22px 0;border-left:0}.value.four div:nth-child(2n){padding-left:22px;border-left:1px solid var(--line)}}
+@media (max-width:560px){.value.four{grid-template-columns:1fr}.value.four div,.value.four div + div,.value.four div:nth-child(2n){padding:20px 0;border-left:0}}
+
+/* Quiénes somos */
+.about{display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:center;margin-bottom:40px}
+.about-copy{display:grid;gap:18px;min-width:0}
+.about-copy .lead{max-width:none}
+.about-photo{margin:0;border-radius:6px;overflow:hidden;background:var(--line);aspect-ratio:4/3}
+.about-photo img{width:100%;height:100%;object-fit:cover}
+.about-close{display:grid;gap:24px;justify-items:start;margin-top:36px}
+.about-close .motto{max-width:70ch;font-size:1.08rem}
+@media (max-width:860px){.about{grid-template-columns:1fr;gap:24px}.about-photo{order:-1}}
+.trust{display:flex;gap:10px;align-items:flex-start;font-size:.92rem;color:var(--muted);max-width:62ch}
+.trust::before{content:"";flex:none;width:8px;height:8px;margin-top:.5em;border-radius:50%;background:var(--sun)}
 
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
 .step{display:grid;gap:10px;align-content:start;padding-top:18px;border-top:3px solid var(--sky);min-width:0}
@@ -201,6 +225,8 @@ section.band{background:var(--surface);border-block:1px solid var(--line)}
 footer{border-top:1px solid var(--line)}
 footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-block:28px;color:var(--muted);font-size:.88rem}
 footer .brand img{width:28px}
+footer nav{display:flex;gap:18px;flex-wrap:wrap}
+footer nav a{color:var(--muted);font-size:.88rem}
 </style>
 </head>
 <body>
@@ -210,6 +236,7 @@ footer .brand img{width:28px}
     <a class="brand" href="#inicio"><img src="img/logo.png" alt="" width="34" height="46"><span><b>ARGEOS</b><small>Servicios Geológicos Argentinos</small></span></a>
     <nav aria-label="Principal">
       <a href="#servicios">Servicios</a>
+      <a href="#nosotros">Quiénes somos</a>
       <a href="#valor">Por qué ARGEOS</a>
       <a href="#proceso">Cómo trabajamos</a>
       <a href="#sectores">Sectores</a>
@@ -228,11 +255,12 @@ footer .brand img{width:28px}
           <h1>Información confiable para <em>decisiones seguras</em>.</h1>
         </div>
         <div class="hero-copy">
-          <p class="lead">Evaluación ambiental, hidrogeología aplicada y diagnóstico del subsuelo para cumplir la normativa, gestionar riesgos y decidir con datos técnicos confiables. Acompañamos cada etapa del proyecto, desde la caracterización inicial hasta la presentación ante las autoridades.</p>
+          <p class="lead">Evaluación ambiental, hidrogeología aplicada, perforación de pozos y gestión integral del agua y los efluentes, para cumplir la normativa y decidir con datos técnicos confiables.</p>
           <div class="cta">
             <a class="btn" href="#contacto">Pedir asesoramiento</a>
             <a class="btn ghost" href="#servicios">Ver servicios</a>
           </div>
+          <p class="trust">Responsables inscriptos ante la Autoridad del Agua (ADA) de la Provincia de Buenos Aires.</p>
         </div>
       </div>
       <figure class="hero-photo" style="margin:0">
@@ -250,23 +278,26 @@ footer .brand img{width:28px}
         <div class="index-col">
           <span class="label"><i class="swatch" style="background:var(--s-vadose)"></i>Ambiente</span>
           <a href="#evaluacion">Evaluación ambiental de sitios</a>
+          <a href="#impacto">Estudios de impacto ambiental</a>
           <a href="#riesgo">Análisis de riesgo y remediación</a>
           <a href="#residuos">Gestión de residuos</a>
         </div>
         <div class="index-col">
           <span class="label"><i class="swatch" style="background:var(--s-sat)"></i>Agua subterránea</span>
           <a href="#hidrogeologia">Hidrogeología aplicada</a>
+          <a href="#perforaciones">Perforación de pozos</a>
           <a href="#monitoreo">Monitoreo ambiental</a>
           <a href="#videoendoscopia">Videoendoscopía de pozos</a>
         </div>
         <div class="index-col">
           <span class="label"><i class="swatch" style="background:var(--s-clay)"></i>Geofísica</span>
           <a href="#georradar">Georradar (GPR)</a>
-          <a href="#tomografia">Tomografía eléctrica (ERT)</a>
+          <a href="#tomografia">Tomografía eléctrica y Sondeos Eléctricos Verticales (TE y SEV)</a>
         </div>
         <div class="index-col">
-          <span class="label"><i class="swatch" style="background:var(--sky)"></i>Agua y trámites</span>
-          <a href="#efluentes">Agua y efluentes</a>
+          <span class="label"><i class="swatch" style="background:var(--sky)"></i>Agua y efluentes</span>
+          <a href="#efluentes">Efluentes y vertidos</a>
+          <a href="#ingenieria">Ingeniería sanitaria y conceptual</a>
           <a href="#gestiones">Gestiones ante organismos</a>
         </div>
       </div>
@@ -283,7 +314,6 @@ footer .brand img{width:28px}
           <h3>Evaluación ambiental de sitios</h3>
           <p>Estudios ambientales completos para identificar, caracterizar y cuantificar pasivos ambientales en sitios industriales, comerciales e institucionales. Seguimos los estándares de la ASTM y la normativa local vigente, con informes técnicamente sólidos y jurídicamente válidos ante los organismos de control. Desde la revisión histórica del sitio hasta el muestreo de suelos y aguas, cada etapa queda documentada para respaldar decisiones de remediación, compraventa de terrenos o cierre de instalaciones.</p>
           <dl class="items">
-            <div><dt><h4>Estudios de Impacto Ambiental (EsIA)</h4></dt><dd>Línea de base, identificación de impactos y medidas de mitigación conforme a la normativa vigente.</dd></div>
             <div><dt><h4>Estudios Fase I</h4></dt><dd>Identificación de pasivos ambientales con revisión histórica, entrevistas y reconocimiento de campo según ASTM E1527.</dd></div>
             <div><dt><h4>Estudios Fase II</h4></dt><dd>Muestreo sistemático de suelos y aguas subterráneas para caracterizar los contaminantes de preocupación.</dd></div>
             <div><dt><h4>Sitios potencialmente contaminados</h4></dt><dd>Evaluación integral con criterios normativos vigentes e informes técnicos para organismos de control.</dd></div>
@@ -291,7 +321,24 @@ footer .brand img{width:28px}
         </div>
       </article>
 
-      <article class="svc solo" id="riesgo">
+      <article class="svc" id="impacto">
+        <div class="svc-text">
+          <h3>Estudios de impacto ambiental</h3>
+          <p>Elaboramos estudios de impacto ambiental para obras, industrias y desarrollos, desde la línea de base hasta el plan de gestión ambiental, conforme a la normativa nacional, provincial y municipal.</p>
+          <dl class="items">
+            <div><dt><h4>Línea de base ambiental</h4></dt><dd>Caracterización del medio físico, biológico y social.</dd></div>
+            <div><dt><h4>Identificación y valoración de impactos</h4></dt></div>
+            <div><dt><h4>Medidas de mitigación y Plan de Gestión Ambiental</h4></dt></div>
+            <div><dt><h4>Presentación ante la autoridad de aplicación</h4></dt></div>
+          </dl>
+        </div>
+        <div class="svc-media wide">
+          <img src="img/impacto-ambiental.jpg" alt="Profesional de ARGEOS realizando mediciones en la vía pública para un estudio de impacto ambiental" loading="lazy" width="1600" height="739">
+          <img class="feat" src="img/impacto-ambiental-2.jpg" alt="Presentación pública de un estudio de impacto ambiental ante vecinos" loading="lazy" width="1000" height="461">
+        </div>
+      </article>
+
+      <article class="svc flip" id="riesgo">
         <div class="svc-text">
           <h3>Análisis de riesgo y remediación</h3>
           <p>Evaluaciones de riesgo para la salud humana bajo el marco RBCA (Risk-Based Corrective Action), con modelos conceptuales del sitio que definen niveles de intervención técnicamente fundamentados y económicamente eficientes. El enfoque basado en riesgo evita la sobrerremediación y optimiza los recursos del cliente.</p>
@@ -301,6 +348,12 @@ footer .brand img{width:28px}
             <div><dt><h4>Niveles de intervención</h4></dt><dd>Concentraciones objetivo definidas según el uso del suelo y la sensibilidad de los receptores.</dd></div>
             <div><dt><h4>Planes de remediación</h4></dt><dd>Estrategias adaptadas al contexto técnico, normativo y económico de cada sitio.</dd></div>
           </dl>
+        </div>
+        <div class="svc-media">
+          <div class="grid2 tall">
+            <img src="img/remediacion.jpg" alt="Técnico con casco y chaleco midiendo en un pozo de monitoreo en la vereda" loading="lazy" width="1200" height="1600">
+            <img src="img/remediacion-2.jpg" alt="Equipo trabajando junto a pozos de monitoreo protegidos en un sitio industrial" loading="lazy" width="450" height="1000">
+          </div>
         </div>
       </article>
 
@@ -314,7 +367,7 @@ footer .brand img{width:28px}
             <div><dt><h4>Optimización operativa</h4></dt><dd>Mejores prácticas internas para reducir la generación, los costos de gestión y los riesgos asociados.</dd></div>
           </dl>
         </div>
-        <div class="svc-media"><img src="img/residuos.jpg" alt="Contenedores de residuos diferenciados en un patio industrial" loading="lazy" width="900" height="1350"></div>
+        <div class="svc-media wide"><img src="img/residuos.jpg" alt="Contenedores diferenciados para residuos peligrosos, domiciliarios y reciclables" loading="lazy" width="1600" height="882"></div>
       </article>
     </div>
   </div>
@@ -327,21 +380,20 @@ footer .brand img{width:28px}
       <article class="svc" id="hidrogeologia">
         <div class="svc-text">
           <h3>Hidrogeología aplicada</h3>
-          <p>La caracterización hidrogeológica permite entender cómo se comporta el agua subterránea y cómo interactúa con posibles fuentes de contaminación. Hacemos estudios integrales, desde la instalación de piezómetros hasta la interpretación de ensayos de bombeo y la modelización del flujo subterráneo.</p>
+          <p>La caracterización hidrogeológica permite entender cómo se comporta el agua subterránea y cómo interactúa con posibles fuentes de contaminación. Realizamos estudios integrales: desde la perforación e instalación de pozos hasta los ensayos de bombeo, la caracterización de acuíferos y la modelización del flujo subterráneo.</p>
           <dl class="items">
             <div><dt><h4>Caracterización de aguas subterráneas</h4></dt><dd>Parámetros hidráulicos, calidad fisicoquímica y dirección de flujo.</dd></div>
             <div><dt><h4>Redes de monitoreo</h4></dt><dd>Diseño, instalación y seguimiento de redes de piezómetros y pozos de observación.</dd></div>
             <div><dt><h4>Interpretación hidrogeológica</h4></dt><dd>Análisis integrado de datos para tomar decisiones técnicas fundamentadas.</dd></div>
-            <div><dt><h4>Supervisión de perforaciones</h4></dt><dd>Control profesional de la ejecución de pozos de monitoreo y captación:
-              <ul><li>Registro litológico (logueo)</li><li>Verificación constructiva de entubado y filtrado</li><li>Control de calidad de obra y materiales</li></ul></dd></div>
+            <div><dt><h4>Ensayos de bombeo</h4></dt><dd>Determinación de parámetros hidráulicos del acuífero (transmisividad, conductividad hidráulica, coeficiente de almacenamiento) y del caudal de explotación seguro de cada pozo.</dd></div>
+            <div><dt><h4>Caracterización hidrogeológica de acuíferos</h4></dt><dd>Definición de unidades acuíferas, espesores, niveles piezométricos, dirección de flujo, recarga y calidad del agua.</dd></div>
           </dl>
         </div>
         <div class="svc-media">
-          <div class="grid4">
-            <img src="img/pozo-monitoreo.jpg" alt="Pozo de monitoreo identificado con cartel ARGEOS" loading="lazy" width="626" height="626">
-            <img src="img/muestreo-agua.jpg" alt="Técnico tomando una muestra de agua" loading="lazy" width="626" height="626">
-            <img src="img/campo-equipo.jpg" alt="Equipo trabajando en campo junto a un cerco industrial" loading="lazy" width="626" height="626">
-            <img src="img/perforacion.jpg" alt="Perforadora instalando un pozo de monitoreo" loading="lazy" width="626" height="626">
+          <img class="feat" src="img/caracterizacion-agua-2.jpg" alt="Profesional de ARGEOS realizando mediciones de campo para caracterizar el agua subterránea" loading="lazy" width="1600" height="739">
+          <div class="grid2">
+            <img src="img/caracterizacion-agua-1.jpg" alt="Técnico tomando una muestra de agua subterránea" loading="lazy" width="1000" height="1000">
+            <img src="img/caracterizacion-agua-3.jpg" alt="Estación de trabajo de campo con mesa de muestreo junto a un equipo de perforación" loading="lazy" width="1000" height="750">
           </div>
         </div>
       </article>
@@ -383,7 +435,32 @@ footer .brand img{width:28px}
         <figcaption class="fig-cap"><span>Corte esquemático · escala vertical exagerada</span><span>PM: pozo de monitoreo · PZ: piezómetro · tramo punteado: filtro</span></figcaption>
       </figure>
 
-      <article class="svc flip" id="monitoreo">
+      <article class="svc flip" id="perforaciones">
+        <div class="svc-text">
+          <h3>Perforación de pozos de monitoreo y captación</h3>
+          <p>Ejecutamos y supervisamos la perforación de pozos de monitoreo y de captación de aguas subterráneas, con diseño técnico, control de obra y documentación lista para presentar ante la Autoridad del Agua.</p>
+          <dl class="items">
+            <div><dt><h4>Pozos de monitoreo</h4></dt><dd>Perforación e instalación de freatímetros y piezómetros para redes de monitoreo ambiental.</dd></div>
+            <div><dt><h4>Pozos de captación de aguas subterráneas</h4></dt><dd>Pozos exploratorios y de explotación para abastecimiento industrial, comercial, agrícola y de desarrollos inmobiliarios.</dd></div>
+            <div><dt><h4>Ensayos de bombeo</h4></dt><dd>Ensayos de rendimiento y de acuífero, con interpretación de resultados.</dd></div>
+            <div><dt><h4>Supervisión de perforaciones</h4></dt><dd>Control profesional de la ejecución de pozos de monitoreo y captación:
+              <ul><li>Registro litológico (logueo)</li><li>Verificación constructiva de entubado y filtrado</li><li>Control de calidad de obra y materiales</li></ul></dd></div>
+          </dl>
+          <p class="note">Antes de perforar, ubicamos el sitio óptimo con estudios geofísicos (<a class="more" href="#tomografia">TE y SEV</a>).</p>
+        </div>
+        <div class="svc-media">
+          <img class="feat" src="img/pozo-explotacion.jpg" alt="Equipo de perforación ejecutando un pozo de explotación de agua subterránea en un predio industrial" loading="lazy" width="1600" height="739">
+          <div class="grid4">
+            <img src="img/pozo-monitoreo-2.jpg" alt="Pozo de monitoreo terminado con cámara de protección y cartel ARGEOS" loading="lazy" width="747" height="1000">
+            <img src="img/pozo-monitoreo-3.jpg" alt="Perforadora instalando un pozo de monitoreo dentro de una nave industrial" loading="lazy" width="563" height="1000">
+            <img src="img/perforacion.jpg" alt="Perforadora instalando un pozo de monitoreo" loading="lazy" width="626" height="626">
+            <img src="img/campo-equipo.jpg" alt="Equipo trabajando en campo junto a un cerco industrial" loading="lazy" width="626" height="626">
+          </div>
+          <span class="cap">Pozos de captación y de monitoreo ejecutados por ARGEOS</span>
+        </div>
+      </article>
+
+      <article class="svc" id="monitoreo">
         <div class="svc-text">
           <h3>Monitoreo ambiental</h3>
           <p>Campañas de muestreo de agua subterránea con protocolos estandarizados que aseguran muestras representativas y resultados analíticos válidos. El seguimiento sistemático de parámetros fisicoquímicos permite detectar tendencias, evaluar la eficacia de una remediación y cumplir con los planes de vigilancia que exigen los organismos de control.</p>
@@ -394,10 +471,10 @@ footer .brand img{width:28px}
             <div><dt><h4>Validación para auditorías</h4></dt><dd>Procesamiento y validación de datos para auditorías ambientales y expedientes regulatorios.</dd></div>
           </dl>
         </div>
-        <div class="svc-media"><img src="img/medicion-nivel.jpg" alt="Técnico midiendo el nivel de agua de un pozo con una sonda" loading="lazy" width="900" height="1347"></div>
+        <div class="svc-media"><img src="img/medicion-nivel.jpg" alt="Técnico con casco midiendo el nivel de agua de un pozo con una sonda" loading="lazy" width="1200" height="1600"></div>
       </article>
 
-      <article class="svc" id="videoendoscopia">
+      <article class="svc flip" id="videoendoscopia">
         <div class="svc-text">
           <h3>Videoendoscopía de pozos</h3>
           <p>Diagnóstico interno no invasivo de pozos de monitoreo y captación.</p>
@@ -409,7 +486,13 @@ footer .brand img{width:28px}
           </dl>
           <p class="note">Para estaciones de servicio, industrias y sitios contaminados.</p>
         </div>
-        <div class="svc-media"><img src="img/videoendoscopia.jpg" alt="Técnico bajando una cámara de inspección dentro de un pozo" loading="lazy" width="900" height="1350"></div>
+        <div class="svc-media">
+          <img src="img/videoendoscopia.jpg" alt="Técnico bajando una cámara de inspección dentro de un pozo" loading="lazy" width="1200" height="1200">
+          <div class="grid2">
+            <img src="img/videoendoscopia-2.jpg" alt="Equipo de videoendoscopía trabajando junto a un pozo en un predio industrial" loading="lazy" width="1000" height="1000">
+            <img src="img/videoendoscopia-3.jpg" alt="Técnico revisando en el monitor la inspección de un pozo" loading="lazy" width="562" height="1000">
+          </div>
+        </div>
       </article>
     </div>
   </div>
@@ -429,42 +512,55 @@ footer .brand img{width:28px}
             <div><dt><h4>Apoyo a obras civiles</h4></dt><dd>Relevamientos previos a excavaciones para minimizar riesgos de interferencia.</dd></div>
           </dl>
         </div>
-        <div class="svc-media"><img src="img/georradar.jpg" alt="Equipo de georradar sobre ruedas listo para un relevamiento" loading="lazy" width="900" height="1580"></div>
+        <div class="svc-media"><img src="img/georradar.jpg" alt="Técnica de ARGEOS realizando un relevamiento con georradar sobre ruedas" loading="lazy" width="901" height="1600"></div>
       </article>
 
       <article class="svc" id="tomografia">
         <div class="svc-text">
-          <h3>Tomografía eléctrica (ERT)</h3>
-          <p>Técnica geofísica no invasiva que caracteriza el subsuelo y prospecta acuíferos midiendo su resistividad eléctrica. Alcanza hasta 100 m de profundidad.</p>
+          <h3>Tomografía eléctrica (TE) y Sondeo Eléctrico Vertical (SEV)</h3>
+          <p>Técnicas geofísicas no invasivas que caracterizan el subsuelo y prospectan acuíferos midiendo su resistividad eléctrica. La TE entrega un perfil continuo del terreno hasta 100 m de profundidad y el SEV define la secuencia de capas en un punto, ideal para ubicar una perforación.</p>
           <dl class="items">
             <div><dt><h4>Acuíferos</h4></dt><dd>Existencia, profundidad y extensión del acuífero, y delimitación de niveles saturados.</dd></div>
             <div><dt><h4>Geología del subsuelo</h4></dt><dd>Variaciones litológicas, estructuras geológicas y heterogeneidades del terreno.</dd></div>
             <div><dt><h4>Contaminación</h4></dt><dd>Detección de plumas de contaminación.</dd></div>
+            <div><dt><h4>Ubicación de pozos</h4></dt><dd>Selección del mejor sitio para perforar pozos de captación.</dd></div>
           </dl>
           <p class="note">Para investigaciones ambientales, geotecnia, hidrogeología, sitios contaminados, proyectos particulares, agrícolas y ganaderos.</p>
         </div>
-        <div class="svc-media wide"><img src="img/tomografia-campo.jpg" alt="Equipo realizando una tomografía eléctrica en el campo" loading="lazy" width="1100" height="825"></div>
+        <div class="svc-media wide"><img src="img/tomografia-campo.jpg" alt="Equipo realizando una tomografía eléctrica y sondeos eléctricos verticales en el campo" loading="lazy" width="1100" height="825"></div>
       </article>
     </div>
   </div>
 
-  <!-- AGUA Y TRÁMITES -->
+  <!-- AGUA Y EFLUENTES -->
   <div class="group">
     <div class="wrap">
-      <div class="group-head g-tram"><i class="stripe" style="background:var(--sky)"></i><div><span class="label">Área</span><h2>Agua y trámites</h2></div></div>
+      <div class="group-head g-tram"><i class="stripe" style="background:var(--sky)"></i><div><span class="label">Área</span><h2>Agua y efluentes</h2></div></div>
 
       <article class="svc flip" id="efluentes">
         <div class="svc-text">
-          <h3>Agua y efluentes</h3>
+          <h3>Efluentes y vertidos</h3>
           <p>Ingeniería y gestión técnico-administrativa para regularizar los recursos hídricos y efluentes de establecimientos comerciales e industriales frente a las exigencias de la Autoridad del Agua (ADA).</p>
           <dl class="items">
             <div><dt><h4>Autoridad del Agua (ADA)</h4></dt><dd>Gestión integral de trámites, declaraciones juradas y acompañamiento técnico ante el organismo para obtener las licencias hídricas.</dd></div>
-            <div><dt><h4>Aptitud de obra de explotación</h4></dt><dd>Diseño técnico y regularización de perforaciones, pozos de bombeo y tomas superficiales para un abastecimiento seguro y legal.</dd></div>
+            <div><dt><h4>Aptitud de obra de explotación</h4></dt><dd>Diseño técnico y regularización de perforaciones, pozos de bombeo y tomas superficiales para un abastecimiento seguro y legal. Incluye pozos de captación de aguas subterráneas y ensayos de bombeo.</dd></div>
             <div><dt><h4>Aptitud de obra hidráulica</h4></dt><dd>Documentación técnica y administrativa, relevamiento topográfico, planialtimetría y verificación de desagües industriales y su conexión con el entorno.</dd></div>
-            <div><dt><h4>Aptitud de obra de vertido</h4></dt><dd>Documentación para vertidos de efluentes líquidos industriales. Diseño y adecuación de plantas de tratamiento.</dd></div>
+            <div><dt><h4>Aptitud de obra de vertido</h4></dt><dd>Documentación para vertidos de efluentes líquidos industriales.</dd></div>
           </dl>
         </div>
         <div class="svc-media"><img src="img/planta-efluentes.jpg" alt="Pileta de una planta de tratamiento de efluentes" loading="lazy" width="589" height="1021"></div>
+      </article>
+
+      <article class="svc solo" id="ingenieria">
+        <div class="svc-text">
+          <h3>Ingeniería sanitaria y conceptual</h3>
+          <p>Desarrollamos la ingeniería necesaria para regularizar y proyectar las instalaciones de agua y efluentes de su establecimiento.</p>
+          <dl class="items">
+            <div><dt><h4>Plano sanitario</h4></dt><dd>Confección y presentación de planos sanitarios de instalaciones de agua y desagües, con la documentación para su aprobación.</dd></div>
+            <div><dt><h4>Ingeniería conceptual</h4></dt><dd>Diseño conceptual de sistemas de captación, tratamiento y vertido, como base para el proyecto ejecutivo y la gestión de permisos.</dd></div>
+            <div><dt><h4>Plantas de tratamiento</h4></dt><dd>Diseño y adecuación de sistemas de tratamiento de efluentes.</dd></div>
+          </dl>
+        </div>
       </article>
 
       <article class="svc solo" id="gestiones">
@@ -482,11 +578,34 @@ footer .brand img{width:28px}
     </div>
   </div>
 
+  <section id="nosotros">
+    <div class="wrap block">
+      <div class="about">
+        <div class="about-copy">
+          <span class="label">Quiénes somos</span>
+          <h2>Un equipo multidisciplinario para todo el ciclo del agua y el ambiente</h2>
+          <p class="lead">ARGEOS es un equipo de profesionales multidisciplinarios que combina geología, hidrogeología, ciencias ambientales e ingeniería. Trabajamos de forma integrada en cada proyecto, desde el estudio inicial y la perforación hasta la presentación del expediente ante los organismos de control. Somos responsables inscriptos ante la Autoridad del Agua (ADA) de la Provincia de Buenos Aires.</p>
+        </div>
+        <figure class="about-photo"><img src="img/equipo-campo.jpg" alt="Equipo de ARGEOS trabajando en campo" loading="lazy" width="1280" height="960"></figure>
+      </div>
+      <div class="value four">
+        <div><h4>Geología</h4><p>Estudios litológicos, prospección geofísica y control geológico de perforaciones.</p></div>
+        <div><h4>Hidrogeología</h4><p>Caracterización de acuíferos, ensayos de bombeo, redes de monitoreo y modelización del flujo subterráneo.</p></div>
+        <div><h4>Ciencias ambientales</h4><p>Estudios de impacto ambiental, evaluación de sitios, análisis de riesgo y remediación.</p></div>
+        <div><h4>Ingeniería</h4><p>Ingeniería conceptual, planos sanitarios, diseño de sistemas de captación y tratamiento de efluentes.</p></div>
+      </div>
+      <div class="about-close">
+        <p class="motto">Un único equipo técnico, sin intermediarios entre disciplinas: la misma coherencia metodológica de la primera consulta al informe final.</p>
+        <a class="btn" href="#proceso">Conocer cómo trabajamos</a>
+      </div>
+    </div>
+  </section>
+
   <section class="band" id="valor">
     <div class="wrap block">
       <div class="sec-head">
         <span class="label">Por qué ARGEOS</span>
-        <h2>Ambiente e hidrogeología bajo un mismo equipo técnico</h2>
+        <h2>Ambiente, agua e hidrogeología bajo un mismo equipo técnico</h2>
         <p class="lead">Evitamos la fragmentación habitual entre consultoras especializadas y mantenemos la coherencia metodológica en todos los entregables. Tenemos experiencia en entornos industriales complejos: refinerías, plantas químicas, terminales de almacenamiento y sitios con historial de contaminación.</p>
       </div>
       <div class="value">
@@ -530,6 +649,7 @@ footer .brand img{width:28px}
         <div><h4>Agroindustria</h4><p>Establecimientos agropecuarios e industrias alimentarias.</p></div>
         <div><h4>Estaciones de servicio</h4><p>Redes de distribución de combustibles y GNC.</p></div>
         <div><h4>Desarrollos inmobiliarios</h4><p>Proyectos residenciales, comerciales y logísticos.</p></div>
+        <div><h4>Minería y áridos</h4><p>Canteras, drenaje y control del agua subterránea en explotaciones mineras.</p></div>
       </div>
     </div>
   </section>
@@ -577,6 +697,11 @@ footer .brand img{width:28px}
 <footer>
   <div class="wrap">
     <span class="brand"><img src="img/logo.png" alt="" width="28" height="38"><span><b>ARGEOS</b><small>Servicios Geológicos Argentinos</small></span></span>
+    <nav aria-label="Pie de página">
+      <a href="#servicios">Servicios</a>
+      <a href="#nosotros">Quiénes somos</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
     <span>© <span id="yr">2026</span> ARGEOS</span>
   </div>
 </footer>
